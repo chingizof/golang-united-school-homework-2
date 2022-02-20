@@ -1,8 +1,6 @@
 package square
 
-import (
-	"math"
-)
+import "math"
 
 // Define custom int type to hold sides number and update CalcSquare signature by replacing #yourTypeNameHere#
 
@@ -11,28 +9,24 @@ import (
 // CalcSquare(10.0, SidesTriangle)
 // CalcSquare(10.0, SidesSquare)
 // CalcSquare(10.0, SidesCircle)
-var Pi = 3.14159265358979323846264338327950288419716939937510582097494459
 
-func CalcSquare(sideLen float64, sidesNum int) float64 {
+type sides int
 
-	if sidesNum == 0 {
-		SidesCircle(sideLen)
-	} else if sidesNum == 4 {
-		SidesSquare(sideLen)
-	} else if sidesNum == 3 {
-		SidesTriangle(sideLen)
+const (
+	Pi            = 3.14159265358979323846264338327950288419716939937510582097494459
+	SidesTriangle = sides(3)
+	SidesSquare   = sides(4)
+	SidesCircle   = sides(0)
+)
+
+func CalcSquare(sideLen float64, sidesNum sides) float64 {
+
+	if sidesNum == SidesCircle {
+		return Pi * sideLen * sideLen
+	} else if sidesNum == SidesSquare {
+		return sideLen * sideLen
+	} else if sidesNum == SidesTriangle {
+		return sideLen * sideLen * math.Sqrt(3) / 4
 	}
 	return 0
-}
-
-func SidesSquare(x float64) float64 {
-	return x * x
-}
-
-func SidesTriangle(x float64) float64 {
-	return x * x * math.Sqrt(3) / 4
-}
-
-func SidesCircle(x float64) float64 {
-	return x * x * Pi
 }

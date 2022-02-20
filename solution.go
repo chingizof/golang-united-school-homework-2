@@ -16,11 +16,23 @@ var Pi = 3.14159265358979323846264338327950288419716939937510582097494459
 func CalcSquare(sideLen float64, sidesNum int) float64 {
 
 	if sidesNum == 0 {
-		return sideLen * Pi * Pi
+		SidesCircle(sideLen)
 	} else if sidesNum == 4 {
-		return sideLen * sideLen
+		SidesSquare(sideLen)
 	} else if sidesNum == 3 {
-		return sideLen * sideLen * math.Sqrt(3) / 4
+		SidesTriangle(sideLen)
 	}
 	return 0
+}
+
+func SidesSquare(x float64) float64 {
+	return x * x
+}
+
+func SidesTriangle(x float64) float64 {
+	return x * x * math.Sqrt(3) / 4
+}
+
+func SidesCircle(x float64) float64 {
+	return x * x * Pi
 }
